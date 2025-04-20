@@ -1,0 +1,21 @@
+{
+  "name": "mern-crud-auth",
+  "version": "0.0.1",
+  "description": "Crud with React, mongodb, express and authentication with JWT",
+  "main": "index.js",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "repository": "https://github.com/avilamrales/mern-crud-auth.git",
+  "author": "Jesús Avila https://jesusavilx.com",
+  "license": "MIT"
+}
