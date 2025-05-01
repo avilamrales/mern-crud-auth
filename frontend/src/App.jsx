@@ -1,5 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -10,11 +13,11 @@ export default function App() {
         />
         <Route
           path="/login"
-          element={<h1 className="text-4xl font-bold">Login</h1>}
+          element={<LoginPage />}
         />
         <Route
           path="/register"
-          element={<h1 className="text-4xl font-bold">Register</h1>}
+          element={<RegisterPage />}
         />
         <Route
           path="/tasks"
