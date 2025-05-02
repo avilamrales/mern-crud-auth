@@ -1,19 +1,41 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { registerRequest } from "../api/auth";
+import { useNavigate } from "react-router";
+
+import { useAuth } from "../context/AuthContext";
 
 export default function RegisterPage() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { signup, isAuthenticated, errors: registerErrors } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) navigate("/tasks");
+  }, [isAuthenticated, navigate]);
 
   const onSubmit = async (values) => {
-    const res = await registerRequest(values);
-    console.log(res);
+    await signup(values);
   };
 
   return (
-    <>
+    <div className="flex flex-col items-center justify-center h-screen bg-slate-900">
+      <h1 className="text-4xl font-bold text-white">Register</h1>
+
+      {registerErrors.length > 0 && (
+        <div className="text-sm text-red-500 bg-red-100 p-6 rounded-lg mt-6">
+          {registerErrors.map((error, index) => (
+            <p key={index}>{error}</p>
+          ))}
+        </div>
+      )}
+
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-4 w-1/3 mx-auto mt-10 max-w-96 bg-slate-800 p-8 rounded-lg"
+        className="flex flex-col gap-4 w-1/3 mx-auto mt-6 max-w-96 bg-slate-800 p-8 rounded-lg"
       >
         <input
           type="text"
@@ -22,6 +44,9 @@ export default function RegisterPage() {
           {...register("username", { required: true })}
           className="p-2 bg-slate-700 rounded-md border-blue-400 border-1 focus:ring-1 focus:outline-none focus:ring-blue-600 placeholder:text-sm text-base"
         />
+        {errors.username && (
+          <p className="text-red-500 text-sm">Username is required</p>
+        )}
         <input
           type="email"
           name="email"
@@ -29,6 +54,9 @@ export default function RegisterPage() {
           {...register("email", { required: true })}
           className="p-2 bg-slate-700 rounded-md border-blue-400 border-1 focus:ring-1 focus:outline-none focus:ring-blue-600 placeholder:text-sm text-base"
         />
+        {errors.email && (
+          <p className="text-red-500 text-sm">Email is required</p>
+        )}
         <input
           type="password"
           name="password"
@@ -36,6 +64,9 @@ export default function RegisterPage() {
           {...register("password", { required: true })}
           className="p-2 bg-slate-700 rounded-md border-blue-400 border-1 focus:ring-1 focus:outline-none focus:ring-blue-600 placeholder:text-sm text-base"
         />
+        {errors.password && (
+          <p className="text-red-500 text-sm">Password is required</p>
+        )}
         <button
           type="submit"
           className="hover:cursor-pointer bg-blue-500 p-2 rounded-md w-full hover:bg-blue-600 transition duration-200 ease-in-out"
@@ -43,6 +74,6 @@ export default function RegisterPage() {
           Register
         </button>
       </form>
-    </>
+    </div>
   );
 }
