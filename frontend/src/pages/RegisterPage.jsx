@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 import { useAuth } from "../context/AuthContext";
 
@@ -26,7 +26,7 @@ export default function RegisterPage() {
       <h1 className="text-4xl font-bold text-white">Register</h1>
 
       {registerErrors.length > 0 && (
-        <div className="text-sm text-red-500 bg-red-100 p-6 rounded-lg mt-6">
+        <div className="text-sm text-red-500 bg-red-100 p-4 rounded-lg mt-6">
           {registerErrors.map((error, index) => (
             <p key={index}>{error}</p>
           ))}
@@ -74,6 +74,12 @@ export default function RegisterPage() {
           Register
         </button>
       </form>
+      <p className="text-sm text-white mt-4">
+        Already have an account?{" "}
+        <Link to="/login" className="text-blue-500 hover:underline">
+          Login
+        </Link>
+      </p>
     </div>
   );
 }

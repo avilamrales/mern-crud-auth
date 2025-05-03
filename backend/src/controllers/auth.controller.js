@@ -25,7 +25,7 @@ export const register = async (req, res) => {
       createdAt: userSaved.createdAt,
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json([error.message]);
   }
 };
 
@@ -34,11 +34,10 @@ export const login = async (req, res) => {
 
   try {
     const userFound = await User.findOne({ email });
-    if (!userFound) return res.status(400).json({ message: "User not found" });
+    if (!userFound) return res.status(400).json(["User not found"]);
 
     const isMatch = await bcrypt.compare(password, userFound.password);
-    if (!isMatch)
-      return res.status(400).json({ message: "Incorrect password" });
+    if (!isMatch) return res.status(400).json(["Incorrect password"]);
 
     const token = await createAccessToken({ id: userFound._id });
 
@@ -50,7 +49,7 @@ export const login = async (req, res) => {
       createdAt: userFound.createdAt,
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json(error.message);
   }
 };
 
@@ -63,7 +62,7 @@ export const logout = (req, res) => {
 export const profile = async (req, res) => {
   const userFound = await User.findById(req.user.id);
 
-  if (!userFound) return res.status(400).json({ message: "User not found" });
+  if (!userFound) return res.status(400).json(["User not found"]);
 
   return res.json({
     id: userFound._id,
