@@ -10,7 +10,12 @@ export default function TaskCard({ task }) {
       <header className="flex justify-between items-center mb-4">
         <h3 className="text-lg font-bold">{task.title}</h3>
         <div className="flex gap-x-4 items-center">
-          <button>Edit</button>
+          <Link
+            to={`/tasks/${task._id}`}
+            className="px-2 py-1 bg-sky-600 rounded-lg"
+          >
+            Edit
+          </Link>
           <button
             onClick={() => deleteTask(task._id)}
             className="px-2 py-1 bg-rose-700 rounded-lg"
