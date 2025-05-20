@@ -20,7 +20,7 @@ export default function App() {
     <AuthProvider>
       <TaskProvider>
         <BrowserRouter>
-          <main className="container mx-auto px-10 py-5">
+          <main className="container mx-auto px-10 py-5 h-full flex flex-col">
             <Navbar />
             <Routes>
               <Route path="/" element={<HomePage />} />
