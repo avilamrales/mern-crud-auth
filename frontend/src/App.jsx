@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router";
 
 import { AuthProvider } from "./context/AuthContextComponent";
 
+import Navbar from "./components/Navbar";
+
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -18,6 +20,7 @@ export default function App() {
     <AuthProvider>
       <TaskProvider>
         <BrowserRouter>
+          <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
