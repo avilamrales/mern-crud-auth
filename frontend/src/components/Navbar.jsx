@@ -6,7 +6,7 @@ export default function Navbar() {
   const { isAuthenticated, logout, user } = useAuth();
 
   return (
-    <nav className="bg-sky-700 flex justify-between py-5 px-10">
+    <nav className="bg-sky-700 flex justify-between items-center py-4 px-10 rounded-lg">
       <Link to="/">
         <h1 className="text-2xl font-bold">Tasks Manager</h1>
       </Link>

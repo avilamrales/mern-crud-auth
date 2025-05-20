@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+
 import { useTask } from "../context/TasksContext";
 
 export default function TaskFormPage() {
@@ -9,9 +11,11 @@ export default function TaskFormPage() {
   } = useForm();
 
   const { createTask } = useTask();
+  const navigate = useNavigate();
 
   const onSubmit = async (values) => {
     await createTask(values);
+    navigate("/tasks");
   };
 
   return (
