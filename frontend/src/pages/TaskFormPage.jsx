@@ -36,7 +36,7 @@ export default function TaskFormPage() {
   const onSubmit = async (values) => {
     const validData = {
       ...values,
-      date: values.date ? dayjs(values.date).format() : dayjs.utc().format(),
+      date: values.date ? dayjs(values.date).toDate() : dayjs.utc().toDate(),
     };
 
     if (params.id) {
