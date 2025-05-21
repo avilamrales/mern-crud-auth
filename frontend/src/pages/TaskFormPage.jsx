@@ -31,7 +31,7 @@ export default function TaskFormPage() {
     }
 
     loadTask();
-  });
+  }, [params.id, getTask, setValue]);
 
   const onSubmit = async (values) => {
     const validData = {

@@ -8,7 +8,7 @@ export default function TasksPage() {
 
   useEffect(() => {
     getTasks();
-  });
+  }, [getTasks]);
 
   if (tasks.length === 0) {
     return (

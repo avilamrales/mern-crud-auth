@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { TaskContext } from "./TasksContext";
 import {
@@ -17,14 +17,14 @@ export const TaskProvider = ({ children }) => {
     console.log(res);
   };
 
-  const getTasks = async () => {
+  const getTasks = useCallback(async () => {
     try {
       const res = await getTasksRequest();
       setTasks(res.data);
     } catch (error) {
       console.error(error);
     }
-  };
+  }, []);
 
   const deleteTask = async (id) => {
     try {
@@ -38,14 +38,14 @@ export const TaskProvider = ({ children }) => {
     }
   };
 
-  const getTask = async (id) => {
+  const getTask = useCallback(async (id) => {
     try {
       const res = await getTaskRequest(id);
       return res.data;
     } catch (error) {
       console.error(error);
     }
-  };
+  }, []);
 
   const updateTask = async (task, id) => {
     try {
